@@ -1,19 +1,18 @@
 # Bilingual Veterinary Dictation System
 
 ## Project Structure
-```
-research_bilingual_dictation/
-├── [README.md](README.md)
-├── [ai_docs/](ai_docs/)               # Rules, tasks, planning & specifications
-├── [research_analysis/](research_analysis/)     # Research findings & validation
-├── [technical_analysis/](technical_analysis/)    # System architecture & design analysis
-├── [infrastructure/](infrastructure/)        # System architecture & testing frameworks
-├── [llm_analysis/](llm_analysis/)         # Speech-to-text & model analysis
-├── [vocabulary_sources/](vocabulary_sources/)   # Veterinary terminology research
-├── [mobile_constraints/](mobile_constraints/)   # Mobile deployment analysis
-├── [data_models/](data_models/)         # Data schemas & models
-└── [cost_analysis/](cost_analysis/)       # Resource analysis
-```
+
+**research_bilingual_dictation/**
+- [README.md](README.md)
+- [ai_docs/](ai_docs/) - Rules, tasks, planning & specifications
+- [research_analysis/](research_analysis/) - Research findings & validation
+- [technical_analysis/](technical_analysis/) - System architecture & design analysis
+- [infrastructure/](infrastructure/) - System architecture & testing frameworks
+- [llm_analysis/](llm_analysis/) - Speech-to-text & model analysis
+- [vocabulary_sources/](vocabulary_sources/) - Veterinary terminology research
+- [mobile_constraints/](mobile_constraints/) - Mobile deployment analysis
+- [data_models/](data_models/) - Data schemas & models
+- [cost_analysis/](cost_analysis/) - Resource analysis
 
 ## Overview
 Mobile-first veterinary dictation system with English/Spanish support, specialized localLLM capabilities, and comprehensive A/B testing framework. Includes **PyVetTermino** - a standalone veterinary terminology API/SDK.

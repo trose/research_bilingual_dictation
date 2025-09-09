@@ -2,7 +2,7 @@
 
 ## High-Level Architecture
 
-### System Components
+### System Components with A/B Testing
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                    Mobile Application Layer                     │
@@ -12,9 +12,17 @@
                                 │
                                 ▼
 ┌─────────────────────────────────────────────────────────────────┐
+│                    A/B Testing Layer                            │
+├─────────────────────────────────────────────────────────────────┤
+│  Variant Router  │  Test Config  │  Metrics Collector  │  Monitor│
+└─────────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────┐
 │                    Processing Layer                             │
 ├─────────────────────────────────────────────────────────────────┤
 │  Audio Preprocessing  │  Speech-to-Text  │  Language Detection  │
+│  (Vosk/Whisper)      │  (Multiple Variants) │  (A/B Tested)    │
 └─────────────────────────────────────────────────────────────────┘
                                 │
                                 ▼
@@ -22,13 +30,15 @@
 │                    AI Processing Layer                          │
 ├─────────────────────────────────────────────────────────────────┤
 │  Veterinary LLM  │  RAG System  │  Output Processing  │  Agents │
+│  (Quantization   │  (A/B Tested)│  (Multi-Variant)   │  (Tested)│
+│   Variants)      │              │                    │         │
 └─────────────────────────────────────────────────────────────────┘
                                 │
                                 ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                    Data Storage Layer                           │
 ├─────────────────────────────────────────────────────────────────┤
-│  Audio Storage  │  Text Storage  │  Vector DB  │  Metadata DB  │
+│  Audio Storage  │  Text Storage  │  Vector DB  │  Test Data DB  │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -46,6 +56,27 @@
 - Audio input capture and validation
 - Display of processed results
 - User preference management
+
+### 2. A/B Testing Layer
+**Components:**
+- **Variant Router**: Routes users to appropriate test variants
+- **Test Configuration**: Manages test parameters and traffic splitting
+- **Metrics Collector**: Real-time performance and user behavior tracking
+- **Monitoring Dashboard**: Live test monitoring and alerting
+
+**Responsibilities:**
+- Test variant management and routing
+- Performance metrics collection
+- Statistical analysis and reporting
+- Automated rollback on critical issues
+- User experience optimization through data-driven decisions
+
+**Test Scenarios:**
+- **Speech-to-Text Comparison**: Vosk vs Whisper performance evaluation
+- **Model Quantization**: INT8 vs INT4 vs FP16 impact analysis
+- **RAG Effectiveness**: Impact of RAG on accuracy and processing time
+- **Agentic vs Single Model**: Multi-agent vs monolithic approach
+- **Device Optimization**: Platform-specific performance tuning
 
 ### 2. Processing Layer
 **Components:**

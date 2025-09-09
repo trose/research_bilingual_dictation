@@ -32,10 +32,28 @@ Mobile-first veterinary dictation system with English/Spanish support, specializ
 - **Cloud**: AWS services for validation/fallback
 
 ## Architecture
-```
-Audio Input → Preprocessing → Speech-to-Text → Language Detection → 
-Veterinary Processing → PyVetTermino RAG → Output Generation → 
-Storage → User Display
+
+```mermaid
+graph TD
+    A[Audio Input] --> B[Audio Preprocessing]
+    B --> C[Speech-to-Text<br/>Vosk/Whisper]
+    C --> D[Language Detection<br/>EN/ES]
+    D --> E[Veterinary Processing<br/>LocalLLM]
+    E --> F[PyVetTermino RAG<br/>Terminology Enhancement]
+    F --> G[Output Generation<br/>Formatted Text]
+    G --> H[Local Storage<br/>SQLite + Vector DB]
+    H --> I[User Display<br/>Mobile App]
+    
+    J[AWS Cloud<br/>Fallback Services] -.-> C
+    J -.-> E
+    J -.-> F
+    
+    K[Veterinary Knowledge Base<br/>100K+ Terms] --> F
+    
+    style A fill:#e1f5fe
+    style I fill:#e8f5e8
+    style J fill:#fff3e0
+    style K fill:#f3e5f5
 ```
 
 ## PyVetTermino
